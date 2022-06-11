@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math
+from datetime import datetime
 
 def distance(x1, y1, x2, y2):
     dist = math.sqrt(math.fabs(x2-x1)**2 + math.fabs(y2-y1)**2)
@@ -29,7 +30,8 @@ def find_color1(frame): #pink
             return (700, 700), False #faraway point
     else:
         return (700, 700), False #faraway point
-def find_color3(frame):
+    
+def find_color3(frame): #Yellow
     """
     Filter "frame" for HSV bounds for color1 (inplace, modifies frame) & return coordinates of the object with that color
     """
@@ -53,7 +55,7 @@ def find_color3(frame):
     else:
         return (700, 700), True #faraway point
     
-def find_color2(frame):
+def find_color2(frame): #White
     """
     Filter "frame" for HSV bounds for color1 (inplace, modifies frame) & return coordinates of the object with that color
     """
@@ -77,6 +79,8 @@ def find_color2(frame):
     else:
         return (700, 700), True #faraway point
 
+data = {}
+
 cap = cv2.VideoCapture(1)
 
 while True:
@@ -93,14 +97,24 @@ while True:
     cv2.circle(copy_frame, (color3_x, color3_y), 20, (0, 0, 255), -1)
 
     if found_color1 and found_color2 and found_color3:
+        
+        time = datetime.now()
+        #print(time)
         #trig stuff to get the line
         # hypotenuse = distance(color1_x, color1_x, color2_x, color2_y)
         horizontal_distance_one = distance(color1_x, color1_y, color2_x, color1_y)
-        print("Horizontal Distance :", horizontal_distance_one)
+        #print("Horizontal Distance :", horizontal_distance_one)
+        
         horizontal_distance_two = distance(color3_x, color3_y, color2_x, color1_y)
-        print("Horizontal Distance :", horizontal_distance_two)
+        #print("Horizontal Distance :", horizontal_distance_two)
         # angle = np.arcsin(vertical/hypotenuse)*180.0/math.pi
 
+        data.update({
+            "time " : time,
+            "bot1 " : horizontal_distance_one,
+            "bot2 " : horizontal_distance_two })
+        
+        print(data)
         #draw all 3 lines
         cv2.line(copy_frame, (color1_x, color1_y), (color2_x, color2_y), (0, 0, 255), 2)
         cv2.line(copy_frame, (color3_x, color3_y), (color2_x, color1_y), (0, 0, 255), 2)
