@@ -3,9 +3,17 @@ import paho.mqtt.client as paho
 import sys
 import json
 
+import time
+ts = time.time()
+  
+# print the current timestamp
+print(ts)
+print(type(ts))
+
+
 cli = paho.Client()
 
-demo = {"bot1" : 10, "bot2" : 15}
+demo = {"bot1" : 10, "bot2" : 15, "timestamp" : ts}
 
 
 if cli.connect("36.255.69.54", 1883, 60) != 0:
