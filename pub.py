@@ -13,7 +13,7 @@ print(type(ts))
 
 cli = paho.Client()
 
-demo = {"timestamp" : ts, "bot1" : 10, "bot2" : 15}
+demo = {"timestamp" : ts, "bot1" : 10, "bot2" : 10}
 
 
 if cli.connect("36.255.69.54", 1883, 60) != 0:
