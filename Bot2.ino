@@ -10,10 +10,10 @@
 #define IN_3  2           // L298N in3 motors LeftP            GPIO2(D4)
 #define IN_4  0           //L298N in4 motors LeftN            GPIO0 (D3)
  
-const char* ssid = "";        // Enter your WiFi name
-const char* password =  "";   // Enter WiFi password
-const char* mqttServer = "";  // Enter Server Ip
-const int mqttPort = ;        // Port
+const char* ssid = "Banyan_House_Nestor";        // Enter your WiFi name
+const char* password =  "banyan@sbn";   // Enter WiFi password
+const char* mqttServer = "36.255.69.54";  // Enter Server Ip
+const int mqttPort = 1883;        // Port
 const char* mqttUser = "";
 const char* mqttPassword = "";
  
@@ -75,7 +75,6 @@ void setup() {
 }
 
 void forward(){
-  Serial.println("RUNNING");
   digitalWrite(IN_1, LOW);
   digitalWrite(IN_2, HIGH);
   analogWrite(ENA, 100);
@@ -85,13 +84,28 @@ void forward(){
   analogWrite(ENB, 100);
 }
 
-void callback(char* topic, byte* payload, unsigned int length) {
 
-  if (((char)payload[0]) == 'f'){Serial.println("Done");forward();}
+void _stop(){
+  digitalWrite(IN_1, LOW);
+  digitalWrite(IN_2, LOW);
+  analogWrite(ENA, 0);
+
+  digitalWrite(IN_3, LOW);
+  digitalWrite(IN_4, LOW);
+  analogWrite(ENB, 0);
+}
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.println("*************************");
+  
+  if (((char)payload[0]) == 'f'){Serial.println("Done");forward();delay(2000);_stop();}
   Serial.println((char)payload[0]);
   epochTime = getTime();
   Serial.print("Epoch Time: ");
   Serial.println(epochTime);
+
+  Serial.println("*************************");
+  Serial.println();
 }
 void loop() {
   client.loop();
