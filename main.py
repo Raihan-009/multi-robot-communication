@@ -1,83 +1,79 @@
 import cv2
 import numpy as np
 import math
-from datetime import datetime
+import time
 
 def distance(x1, y1, x2, y2):
     dist = math.sqrt(math.fabs(x2-x1)**2 + math.fabs(y2-y1)**2)
     return dist
 
 def find_color1(frame): #pink 
-    """
-    Filter "frame" for HSV bounds for color1 (inplace, modifies frame) & return coordinates of the object with that color
-    """
+
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    hsv_lowerbound = np.array([141, 51, 204]) #replace THIS LINE w/ your hsv lowerb
-    hsv_upperbound = np.array([179, 255, 255])#replace THIS LINE w/ your hsv upperb
+    hsv_lowerbound = np.array([141, 51, 204])  
+    hsv_upperbound = np.array([179, 255, 255]) 
     mask = cv2.inRange(hsv_frame, hsv_lowerbound, hsv_upperbound)
     res = cv2.bitwise_and(frame, frame, mask=mask) #filter inplace
     cnts, hir = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     if len(cnts) > 0:
         maxcontour = max(cnts, key=cv2.contourArea)
 
-        #Find center of the contour 
+        #Finding center of the contour 
         M = cv2.moments(maxcontour)
         if M['m00'] > 0 and cv2.contourArea(maxcontour) > 1000:
             cx = int(M['m10']/M['m00'])
             cy = int(M['m01']/M['m00'])
             return (cx, cy), True
         else:
-            return (700, 700), False #faraway point
+            return (700, 700), False
     else:
-        return (700, 700), False #faraway point
+        return (700, 700), False 
     
 def find_color3(frame): #Yellow
-    """
-    Filter "frame" for HSV bounds for color1 (inplace, modifies frame) & return coordinates of the object with that color
-    """
+  
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    hsv_lowerbound =  np.array([0, 175, 204])#replace THIS LINE w/ your hsv lowerb
-    hsv_upperbound = np.array([74, 255, 255])#replace THIS LINE w/ your hsv upperb
+    hsv_lowerbound =  np.array([0, 175, 204])
+    hsv_upperbound = np.array([74, 255, 255])
     mask = cv2.inRange(hsv_frame, hsv_lowerbound, hsv_upperbound)
     res = cv2.bitwise_and(frame, frame, mask=mask)
     cnts, hir = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     if len(cnts) > 0:
         maxcontour = max(cnts, key=cv2.contourArea)
 
-        #Find center of the contour 
+        #Finding center of the contour 
         M = cv2.moments(maxcontour)
         if M['m00'] > 0 and cv2.contourArea(maxcontour) > 2000:
             cx = int(M['m10']/M['m00'])
             cy = int(M['m01']/M['m00'])
-            return (cx, cy), True #True
+            return (cx, cy), True 
         else:
-            return (700, 700), True #faraway point
+            return (700, 700), True 
     else:
-        return (700, 700), True #faraway point
+        return (700, 700), True 
     
 def find_color2(frame): #White
     """
     Filter "frame" for HSV bounds for color1 (inplace, modifies frame) & return coordinates of the object with that color
     """
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    hsv_lowerbound =  np.array([0, 0, 180])#replace THIS LINE w/ your hsv lowerb
-    hsv_upperbound = np.array([111, 52, 255])#replace THIS LINE w/ your hsv upperb
+    hsv_lowerbound =  np.array([0, 0, 180])
+    hsv_upperbound = np.array([111, 52, 255])
     mask = cv2.inRange(hsv_frame, hsv_lowerbound, hsv_upperbound)
     res = cv2.bitwise_and(frame, frame, mask=mask)
     cnts, hir = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     if len(cnts) > 0:
         maxcontour = max(cnts, key=cv2.contourArea)
 
-        #Find center of the contour 
+        #Finding center of the contour 
         M = cv2.moments(maxcontour)
         if M['m00'] > 0 and cv2.contourArea(maxcontour) > 2000:
             cx = int(M['m10']/M['m00'])
             cy = int(M['m01']/M['m00'])
-            return (cx, cy), True #True
+            return (cx, cy), True 
         else:
-            return (700, 700), True #faraway point
+            return (700, 700), True 
     else:
-        return (700, 700), True #faraway point
+        return (700, 700), True 
 
 data = {}
 
@@ -98,19 +94,20 @@ while True:
 
     if found_color1 and found_color2 and found_color3:
         
-        time = datetime.now()
-        #print(time)
-        #trig stuff to get the line
-        # hypotenuse = distance(color1_x, color1_x, color2_x, color2_y)
+        #timestamp counting
+        ts = time.time()
+        #print(timestamp)
+        
+        #hypotenuse = distance(color1_x, color1_x, color2_x, color2_y)
         horizontal_distance_one = distance(color1_x, color1_y, color2_x, color1_y)
         #print("Horizontal Distance :", horizontal_distance_one)
         
         horizontal_distance_two = distance(color3_x, color3_y, color2_x, color1_y)
         #print("Horizontal Distance :", horizontal_distance_two)
-        # angle = np.arcsin(vertical/hypotenuse)*180.0/math.pi
+        #angle = np.arcsin(vertical/hypotenuse)*180.0/math.pi
 
         data.update({
-            "time " : time,
+            "timestamp " : ts,
             "bot1 " : horizontal_distance_one,
             "bot2 " : horizontal_distance_two })
         
