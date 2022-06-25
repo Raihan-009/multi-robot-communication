@@ -7,10 +7,10 @@ def distance(x1, y1, x2, y2):
     dist = math.sqrt(math.fabs(x2-x1)**2 + math.fabs(y2-y1)**2)
     return dist
 
-def find_color1(frame): #pink 
+def find_color1(frame): #red 
 
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    hsv_lowerbound = np.array([141, 51, 204])  
+    hsv_lowerbound = np.array([136, 78, 0])  
     hsv_upperbound = np.array([179, 255, 255]) 
     mask = cv2.inRange(hsv_frame, hsv_lowerbound, hsv_upperbound)
     res = cv2.bitwise_and(frame, frame, mask=mask) #filter inplace
@@ -29,11 +29,11 @@ def find_color1(frame): #pink
     else:
         return (700, 700), False 
     
-def find_color3(frame): #Yellow
+def find_color3(frame): #purple
   
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    hsv_lowerbound =  np.array([0, 175, 204])
-    hsv_upperbound = np.array([74, 255, 255])
+    hsv_lowerbound =  np.array([99, 101, 191])
+    hsv_upperbound = np.array([139, 146, 255])
     mask = cv2.inRange(hsv_frame, hsv_lowerbound, hsv_upperbound)
     res = cv2.bitwise_and(frame, frame, mask=mask)
     cnts, hir = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -56,8 +56,8 @@ def find_color2(frame): #White
     Filter "frame" for HSV bounds for color1 (inplace, modifies frame) & return coordinates of the object with that color
     """
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    hsv_lowerbound =  np.array([0, 0, 180])
-    hsv_upperbound = np.array([111, 52, 255])
+    hsv_lowerbound =  np.array([95, 0, 206])
+    hsv_upperbound = np.array([135, 144, 255])
     mask = cv2.inRange(hsv_frame, hsv_lowerbound, hsv_upperbound)
     res = cv2.bitwise_and(frame, frame, mask=mask)
     cnts, hir = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
