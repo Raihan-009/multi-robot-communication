@@ -122,23 +122,30 @@ while True:
             "bot1" : horizontal_distance_one,
             "bot2" : horizontal_distance_two })
         
-        # print(data)
-        # time.sleep(2)
-        #draw all 3 lines
-        
+        print(data)
+        time.sleep(2)
 
-        # cli = paho.Client()
+        cli = paho.Client()
 
-        # if cli.connect("36.255.69.54", 1883, 60) != 0:
-        #     print("Unable to connect")
-        #     sys.exit(-1)
+        if cli.connect("36.255.69.54", 1883, 60) != 0:
+            print("Unable to connect")
+            sys.exit(-1)
 
-        # cli.publish("iort", json.dumps(data), 0)
-        # time.sleep(2)
-        # cli.disconnect()
+        cli.publish("iort", json.dumps(data), 0)
+        time.sleep(2)
+        cli.disconnect()
 
         cv2.line(copy_frame, (color1_x, color1_y), (color2_x, color2_y), (0, 0, 255), 2)
         cv2.line(copy_frame, (color3_x, color3_y), (color2_x, color2_y), (0, 0, 255), 2)
+        # cv2.line(copy_frame, (color2_x, color2_y), (color2_x, color1_y), (0, 0, 255), 2)
+        
+        cv2.imshow('Distance cal', copy_frame)
+        
+        if cv2.waitKey(1) & 0xFF  == ord('q'):
+            break
+    if not found_color2:
+        # cv2.line(copy_frame, (color1_x, color1_y), (color2_x, color2_y), (0, 0, 255), 2)
+        # cv2.line(copy_frame, (color3_x, color3_y), (color2_x, color2_y), (0, 0, 255), 2)
         # cv2.line(copy_frame, (color2_x, color2_y), (color2_x, color1_y), (0, 0, 255), 2)
         
         cv2.imshow('Distance cal', copy_frame)
