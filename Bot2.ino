@@ -49,8 +49,8 @@ void setup() {
  
   while (!client.connected()) {
     Serial.println("Connecting to MQTT...");
- 
-    if (client.connect("ESP8266Client", mqttUser, mqttPassword )) {
+    // UNIUE ID / STRING
+    if (client.connect("ESP8266Client2", mqttUser, mqttPassword )) {
  
       Serial.println("connected");  
  
