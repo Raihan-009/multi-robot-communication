@@ -1,4 +1,3 @@
-from traceback import print_tb
 import cv2
 import numpy as np
 import math
@@ -123,7 +122,7 @@ while True:
             "bot2" : horizontal_distance_two })
         
         print(data)
-        time.sleep(2)
+        # time.sleep(2)
 
         cli = paho.Client()
 
