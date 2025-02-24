@@ -1,5 +1,5 @@
 # Robot Coordination System: A Practical Guide
-![Simulation](./simulation.svg)
+![Simulation](./simulation.png)
 
 ## Quick Reference Tables
 
