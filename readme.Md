@@ -1,4 +1,5 @@
 # Robot Coordination System: A Practical Guide
+![Simulation](./simulation.svg)
 
 ## Quick Reference Tables
 
@@ -72,13 +73,7 @@ This is a smart robot coordination system that uses a camera to track robots and
 ## How It All Works Together
 
 1. **Starting Up**
-```mermaid
-sequenceDiagram
-    Camera->>Vision System: Captures video feed
-    Vision System->>Server: Sends position data
-    Server->>Robot 1: Sends movement command
-    Server->>Robot 2: Sends movement command
-```
+![Overview](./overview.svg)
 
 2. **Task Assignment Process**
 - Camera spots the colored markers
