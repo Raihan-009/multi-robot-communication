@@ -1,6 +1,5 @@
 <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
     <!-- Camera View Frame -->
-    <rect width="100%" height="100%" fill="white"/>
     <rect x="50" y="50" width="300" height="200" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
     
     <!-- Color Markers -->

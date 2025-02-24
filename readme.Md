@@ -1,7 +1,5 @@
 # Robot Coordination System: A Practical Guide
-<div style="background-color: white;">
-    <img src="simulation.svg" alt="Simulation" width="800"/>
-</div>
+![Simulation](./simulation.svg)
 
 ## Quick Reference Tables
 
