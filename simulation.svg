@@ -1,0 +1,43 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Camera View Frame -->
+    <rect x="50" y="50" width="300" height="200" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+    
+    <!-- Color Markers -->
+    <circle cx="150" cy="120" r="20" fill="#90EE90" stroke="#333" stroke-width="2"/>
+    <text x="140" y="160" font-family="Arial" font-size="12">Robot 1</text>
+    
+    <circle cx="250" cy="150" r="20" fill="#FF69B4" stroke="#333" stroke-width="2"/>
+    <text x="230" y="190" font-family="Arial" font-size="12">Reference</text>
+    
+    <circle cx="200" cy="180" r="20" fill="#87CEEB" stroke="#333" stroke-width="2"/>
+    <text x="190" y="220" font-family="Arial" font-size="12">Robot 2</text>
+    
+    <!-- Distance Lines -->
+    <line x1="150" y1="120" x2="250" y2="150" stroke="#FF0000" stroke-width="2" stroke-dasharray="5,5"/>
+    <line x1="200" y1="180" x2="250" y2="150" stroke="#FF0000" stroke-width="2" stroke-dasharray="5,5"/>
+    
+    <!-- Processing Steps -->
+    <rect x="400" y="50" width="150" height="80" fill="#E3F2FD" stroke="#333" stroke-width="2"/>
+    <text x="425" y="90" font-family="Arial" font-size="14">HSV Conversion</text>
+    <text x="425" y="110" font-family="Arial" font-size="12">Color Space Transform</text>
+    
+    <rect x="400" y="150" width="150" height="80" fill="#E3F2FD" stroke="#333" stroke-width="2"/>
+    <text x="435" y="190" font-family="Arial" font-size="14">Color Masking</text>
+    <text x="415" y="210" font-family="Arial" font-size="12">Isolate Color Regions</text>
+    
+    <rect x="600" y="100" width="150" height="80" fill="#E3F2FD" stroke="#333" stroke-width="2"/>
+    <text x="625" y="140" font-family="Arial" font-size="14">Distance Calc</text>
+    <text x="615" y="160" font-family="Arial" font-size="12">Measure Separations</text>
+    
+    <!-- Arrows -->
+    <path d="M 350 150 L 400 90" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <path d="M 550 90 L 600 140" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <path d="M 550 190 L 600 140" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    
+    <!-- Arrow Marker -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+        </marker>
+    </defs>
+</svg>
