@@ -1,5 +1,7 @@
 # Robot Coordination System: A Practical Guide
-![Simulation](./simulation.svg)
+<div style="background-color: white;">
+    <img src="simulation.svg" alt="Simulation" width="800"/>
+</div>
 
 ## Quick Reference Tables
 
@@ -73,7 +75,9 @@ This is a smart robot coordination system that uses a camera to track robots and
 ## How It All Works Together
 
 1. **Starting Up**
-![Overview](./overview.svg)
+<div style="background-color: white;">
+    <img src="overview.svg" alt="Overview" width="800"/>
+</div>
 
 2. **Task Assignment Process**
 - Camera spots the colored markers
