@@ -1,6 +1,10 @@
 # Robot Coordination System: A Practical Guide
 ![Simulation](./simulation.png)
 
+
+# Robot Coordination System: A Prototype Visualization
+![Visualization](visuals.webp)
+
 ## Quick Reference Tables
 
 ### Color Detection Parameters
